@@ -25,7 +25,8 @@
       if (error) {
         $('.error').text('Failed to load search results.');
       } else {
-        $searchResults.html(templates.renderSearch({ results: results }));
+        var content = templates.renderSearch({"results":results});
+        $searchResults.html(content);
         $searchResults.find('.result').each(function(index, result) {
           $(result).click(function() {
             selectSearchResult($search, results[index]);
@@ -47,6 +48,8 @@
       if (error) {
         $('.error').text('Failed to add the post.');
       } else {
+        console.log("xx");
+        console.log(post);
         NewsfeedView.renderPost($('#newsfeed'), post, true);
       }
     });

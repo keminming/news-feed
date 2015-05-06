@@ -13,6 +13,10 @@
    */
   PostModel.loadAll = function(callback) {
     // TODO
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", POSTS_URL, false );
+    xmlHttp.send();
+    callback(null,JSON.parse(xmlHttp.responseText));
   };
 
   /* Adds the given post to the list of posts. The post must *not* have
@@ -24,6 +28,14 @@
    */
   PostModel.add = function(post, callback) {
     // TODO
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "POST", POSTS_URL, false );
+    xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    var param = JSON.stringify(post);
+    console.log("param");
+    console.log(param);
+    xmlHttp.send(param);
+    callback(null,JSON.parse(xmlHttp.responseText));
   };
 
   /* Removes the post with the given id.
@@ -33,6 +45,12 @@
    */
   PostModel.remove = function(id, callback) {
     // TODO
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "POST", POSTS_URL + "/remove", false );
+    xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    var param = JSON.stringify({"id":id});
+    xmlHttp.send(param);
+    callback(null,null);
   };
 
   /* Upvotes the post with the given id.
@@ -43,6 +61,12 @@
    */
   PostModel.upvote = function(id, callback) {
     // TODO
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "POST", POSTS_URL + "/upvote", false );
+    xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    var param = JSON.stringify({"id":id});
+    xmlHttp.send(param);
+    callback(null,null);
   };
 
   window.PostModel = PostModel;

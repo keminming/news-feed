@@ -13,7 +13,13 @@
    */
   SearchModel.search = function(query, callback) {
     // TODO
+    var xmlHttp = null;
+    var theUrl = '/search?query=' + encodeURIComponent(query);
+    console.log(theUrl);
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false );
+    xmlHttp.send();
+    callback(null,JSON.parse(xmlHttp.responseText));
   };
-
   window.SearchModel = SearchModel;
 })(this, this.document);
